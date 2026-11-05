@@ -1,0 +1,13 @@
+{
+  "name": "rawane",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "description": "RAWANE — Maison de bijoux. Storefront (HTML, CSS, vanilla ES modules) + Node order server (SQLite).",
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "dev": "node --disable-warning=ExperimentalWarning server/index.js",
+    "start": "node --disable-warning=ExperimentalWarning server/index.js",
+    "orders": "node --disable-warning=ExperimentalWarning server/list-orders.js"
+  }
+}

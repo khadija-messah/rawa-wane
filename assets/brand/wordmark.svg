@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 110">
+  <title>RAWANE — Maison de bijoux</title>
+  <path d="M196 34V24a14 14 0 0 1 28 0v10" fill="none" stroke="#c9a96e" stroke-width="1.4"/>
+  <circle cx="210" cy="9" r="2.2" fill="#c9a96e"/>
+  <text x="210" y="78" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-size="52" letter-spacing="16" fill="#0f2b29">RAWANE</text>
+  <text x="210" y="102" text-anchor="middle" font-family="Jost, Helvetica, sans-serif" font-size="11" letter-spacing="6" fill="#9a7b48">MAISON DE BIJOUX</text>
+</svg>

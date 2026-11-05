@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RAWANE — Maison de bijoux</title>
+  <meta name="description" content="RAWANE, bijoux délicats et intemporels. Colliers, bagues, boucles d'oreilles et bracelets pensés pour chaque chapitre de votre histoire." />
+  <meta name="theme-color" content="#0f2b29" />
+  <link rel="icon" href="assets/brand/monogram.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="assets/images/editorial/hero.jpg" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Aller au contenu</a>
+
+  <!-- Announcement -->
+  <div class="announce" role="note">
+    <p>Livraison offerte dès <span data-free-threshold>500 MAD</span> d'achat <span class="announce__extra"><span class="announce__dot" aria-hidden="true">✦</span> Chaque bijou est livré dans son écrin RAWANE</span></p>
+  </div>
+
+  <!-- Header -->
+  <header class="header" data-header>
+    <div class="header__inner container">
+      <button class="icon-btn header__burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-nav" data-open-menu>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h12" /></svg>
+      </button>
+
+      <a class="brand" href="#/" aria-label="RAWANE — accueil">
+        <span class="wordmark">RAWANE</span>
+        <span class="brand__tag">Maison de bijoux</span>
+      </a>
+
+      <nav class="nav" aria-label="Navigation principale">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="#/boutique">Boutique</a></li>
+          <li class="nav__item--mega">
+            <button class="nav__link" type="button" aria-expanded="false" aria-controls="mega" data-mega-toggle>Collections</button>
+            <div class="mega" id="mega" data-mega>
+              <div class="mega__inner container">
+                <div class="mega__links">
+                  <p class="eyebrow">Par catégorie</p>
+                  <ul data-mega-categories></ul>
+                </div>
+                <div class="mega__cards" data-mega-cards></div>
+              </div>
+            </div>
+          </li>
+          <li><a class="nav__link" href="#histoire">À propos</a></li>
+          <li><a class="nav__link" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header__actions">
+        <button class="icon-btn" type="button" aria-label="Rechercher" data-open-search>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" /><path d="m20 20-4.2-4.2" /></svg>
+        </button>
+        <button class="icon-btn hide-sm" type="button" aria-label="Mon compte" data-account>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="3.8" /><path d="M4.5 20c1.3-3.6 4.2-5.4 7.5-5.4s6.2 1.8 7.5 5.4" /></svg>
+        </button>
+        <button class="icon-btn bag-btn" type="button" aria-label="Ouvrir le panier" data-open-cart>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 12H6.2L5 8Z" /><path d="M9 8V6.5a3 3 0 0 1 6 0V8" /></svg>
+          <span class="bag-btn__count" data-cart-count aria-live="polite">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile navigation -->
+  <div class="drawer drawer--left" id="mobile-nav" data-drawer="menu" aria-hidden="true">
+    <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="drawer__head">
+        <span class="wordmark wordmark--sm">RAWANE</span>
+        <button class="icon-btn" type="button" aria-label="Fermer le menu" data-close>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+        </button>
+      </div>
+      <nav class="mobile-nav" aria-label="Navigation mobile">
+        <a href="#/boutique" data-close>Boutique</a>
+        <p class="eyebrow">Collections</p>
+        <div data-mobile-categories></div>
+        <a href="#histoire" data-close>À propos</a>
+        <a href="#contact" data-close>Contact</a>
+      </nav>
+    </div>
+    <div class="drawer__scrim" data-close></div>
+  </div>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__media">
+        <img src="assets/images/editorial/hero.jpg" alt="Femme portant un collier doré à pendentif feuille et une bague assortie" fetchpriority="high" />
+      </div>
+      <div class="hero__veil" aria-hidden="true"></div>
+      <div class="hero__content container">
+        <p class="eyebrow eyebrow--light reveal">Bijoux fins &amp; intemporels</p>
+        <h1 class="hero__title reveal" id="hero-title">
+          L'éclat qui<br /><em>vous ressemble.</em>
+        </h1>
+        <p class="hero__lede reveal">Des bijoux délicats, pensés pour accompagner chaque chapitre de votre histoire.</p>
+        <div class="hero__ctas reveal">
+          <a class="btn btn--gold" href="#collection">Découvrir la collection
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-5-5 5 5-5 5" /></svg>
+          </a>
+          <a class="link-underline link-underline--light" href="#/boutique">Toute la boutique</a>
+        </div>
+      </div>
+      <div class="hero__seal" aria-hidden="true">
+        <svg viewBox="0 0 120 120">
+          <defs><path id="seal-circle" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0" /></defs>
+          <text><textPath href="#seal-circle">MAISON RAWANE ✦ BIJOUX FINS ✦ MAISON RAWANE ✦ BIJOUX FINS ✦</textPath></text>
+        </svg>
+        <span class="hero__seal-mark">R</span>
+      </div>
+      <p class="hero__index" aria-hidden="true"><span>N° 01</span> Collection Lumière</p>
+    </section>
+
+    <!-- Featured collection -->
+    <section class="section featured" id="collection" aria-labelledby="featured-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow eyebrow--lined" data-featured-eyebrow></p>
+          <h2 class="section-title" id="featured-title" data-featured-title></h2>
+          <p class="section-sub" data-featured-sub></p>
+        </header>
+        <div class="carousel" data-carousel>
+          <button class="carousel__arrow carousel__arrow--prev" type="button" aria-label="Produits précédents" data-prev>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7" /></svg>
+          </button>
+          <div class="carousel__track" data-track tabindex="0" aria-label="Collection Lumière, faites défiler"></div>
+          <button class="carousel__arrow carousel__arrow--next" type="button" aria-label="Produits suivants" data-next>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
+          </button>
+        </div>
+        <div class="carousel__progress" aria-hidden="true"><span data-progress></span></div>
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="section categories" aria-labelledby="cat-title">
+      <div class="container">
+        <header class="section-head section-head--split reveal">
+          <div>
+            <p class="eyebrow eyebrow--lined">Explorer</p>
+            <h2 class="section-title" id="cat-title">Trouver <em>son</em> bijou</h2>
+          </div>
+          <a class="link-underline" href="#/boutique">Voir tout</a>
+        </header>
+        <div class="cat-grid" data-categories></div>
+      </div>
+    </section>
+
+    <!-- Story -->
+    <section class="story" id="histoire" aria-labelledby="story-title">
+      <div class="story__media reveal">
+        <img src="assets/images/editorial/packaging.jpg" alt="Écrin à bijoux sombre entrouvert, éclairé dans la pénombre" loading="lazy" />
+      </div>
+      <div class="story__body">
+        <svg class="story__lines" viewBox="0 0 300 600" aria-hidden="true" preserveAspectRatio="none">
+          <path d="M280 0C160 120 300 260 190 380S120 560 260 600" />
+          <path d="M300 40C200 150 320 300 220 400S160 560 300 590" />
+        </svg>
+        <div class="story__text reveal">
+          <p class="eyebrow eyebrow--lined">Notre histoire</p>
+          <h2 class="section-title section-title--left" id="story-title">Créés pour<br />être <em>gardés</em></h2>
+          <p>RAWANE est née d'une envie simple : des bijoux délicats, faciles à porter, qui deviennent peu à peu les témoins de nos plus beaux moments.</p>
+          <p>Chaque pièce est sélectionnée avec soin, puis présentée dans son écrin, prête à être portée ou offerte.</p>
+          <a class="btn btn--teal" href="#/boutique">Découvrir la maison
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-5-5 5 5-5 5" /></svg>
+          </a>
+          <p class="story__sign">— avec amour, RAWANE</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shop -->
+    <section class="section shop" id="boutique" aria-labelledby="shop-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow eyebrow--lined">La boutique</p>
+          <h2 class="section-title" id="shop-title" data-shop-title>Toutes nos pièces</h2>
+        </header>
+        <div class="shop__bar">
+          <div class="tabs" role="tablist" aria-label="Filtrer par catégorie" data-filters></div>
+          <label class="select">
+            <span class="visually-hidden">Trier</span>
+            <select data-sort>
+              <option value="featured">Sélection RAWANE</option>
+              <option value="new">Nouveautés</option>
+              <option value="price-asc">Prix croissant</option>
+              <option value="price-desc">Prix décroissant</option>
+            </select>
+          </label>
+        </div>
+        <p class="shop__count" data-shop-count aria-live="polite"></p>
+        <div class="product-grid" data-grid></div>
+      </div>
+    </section>
+
+    <!-- Banner -->
+    <section class="banner" aria-labelledby="banner-title">
+      <img class="banner__img" src="assets/images/editorial/banner.jpg" alt="" loading="lazy" />
+      <div class="banner__veil" aria-hidden="true"></div>
+      <div class="banner__inner container">
+        <div class="banner__brand reveal">
+          <span class="wordmark wordmark--xl">RAWANE</span>
+          <span class="banner__tag">Maison de bijoux</span>
+        </div>
+        <span class="banner__rule" aria-hidden="true"></span>
+        <div class="banner__copy reveal">
+          <h2 class="banner__title" id="banner-title">Des bijoux qui racontent<br /><em>sans un mot.</em></h2>
+          <a class="btn btn--outline-light" href="#/boutique">Explorer la boutique
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-5-5 5 5-5 5" /></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits" aria-label="Nos engagements">
+      <ul class="benefits__list container">
+        <li class="benefit">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 9h16v13H3zM19 13h5.5l4 4.5V22H19" /><circle cx="8.5" cy="23.5" r="2.3" /><circle cx="23.5" cy="23.5" r="2.3" /></svg>
+          <div><h3>Livraison offerte</h3><p>Dès <span data-free-threshold>500 MAD</span> d'achat</p></div>
+        </li>
+        <li class="benefit">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3.5 26 7v8c0 6.4-4.2 11-10 13.5C10.2 26 6 21.4 6 15V7l10-3.5Z" /><path d="m11.5 16 3.2 3.2 6-6.4" /></svg>
+          <div><h3>Paiement sécurisé</h3><p>Commandez en toute confiance</p></div>
+        </li>
+        <li class="benefit">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 12a10 10 0 1 1-1.2 7" /><path d="M6.5 5.5V12H13" /></svg>
+          <div><h3>Retours faciles</h3><p>Sous 14 jours</p></div>
+        </li>
+        <li class="benefit">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 12h22v15H5zM3 8h26v4H3zM16 8v19" /><path d="M16 8c-2-4-7-5-7-2s4 2 7 2c3 0 7 1 7-2s-5-2-7 2Z" /></svg>
+          <div><h3>Écrin offert</h3><p>Prêt à offrir, toujours</p></div>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" id="contact">
+    <div class="footer__top container">
+      <div class="footer__brand">
+        <span class="wordmark wordmark--lg">RAWANE</span>
+        <p>Bijoux délicats et intemporels, pensés pour être portés chaque jour et gardés toujours.</p>
+        <ul class="socials" aria-label="Réseaux sociaux">
+          <li><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.2" cy="6.8" r=".6" fill="currentColor" /></svg></a></li>
+          <li><a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M10.5 20.5 12.5 12m-1 4c3.5 1 6-1.5 6-4.6a5.4 5.4 0 0 0-10.7-.7c-.2 1.6.4 2.8 1.2 3.3" /></svg></a></li>
+          <li><a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3.5v11.2a3.8 3.8 0 1 1-3.8-3.8M14 3.5c.4 2.6 2.2 4.4 5 4.6" /></svg></a></li>
+          <li><a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H8.9v3h2.6V21" /></svg></a></li>
+        </ul>
+      </div>
+      <nav class="footer__col" aria-label="Boutique">
+        <h3>Boutique</h3>
+        <ul data-footer-categories></ul>
+      </nav>
+      <nav class="footer__col" aria-label="La maison">
+        <h3>La maison</h3>
+        <ul>
+          <li><a href="#histoire">Notre histoire</a></li>
+          <li><a href="#/boutique">Nouveautés</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#contact">Livraison &amp; retours</a></li>
+        </ul>
+      </nav>
+      <div class="footer__news">
+        <h3>Rejoindre la lettre</h3>
+        <p>Nouveautés, avant-premières et histoires de la maison.</p>
+        <form class="newsletter" data-newsletter novalidate>
+          <label class="visually-hidden" for="nl-email">Adresse e-mail</label>
+          <input id="nl-email" type="email" name="email" placeholder="Votre adresse e-mail" autocomplete="email" required />
+          <button type="submit" aria-label="S'inscrire">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-5-5 5 5-5 5" /></svg>
+          </button>
+        </form>
+        <p class="newsletter__msg" data-newsletter-msg role="status"></p>
+      </div>
+    </div>
+    <div class="footer__bottom container">
+      <p>© 2026 RAWANE. Tous droits réservés.</p>
+      <p class="footer__script">Plus qu'un bijou, un souvenir</p>
+    </div>
+  </footer>
+
+  <!-- Search overlay -->
+  <div class="search" data-search aria-hidden="true">
+    <div class="search__panel" role="dialog" aria-modal="true" aria-label="Recherche">
+      <div class="search__bar container">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" /><path d="m20 20-4.2-4.2" /></svg>
+        <label class="visually-hidden" for="search-input">Rechercher un bijou</label>
+        <input id="search-input" type="search" placeholder="Rechercher un bijou, une collection…" autocomplete="off" data-search-input />
+        <button class="icon-btn" type="button" aria-label="Fermer la recherche" data-close>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+        </button>
+      </div>
+      <div class="search__results container" data-search-results aria-live="polite"></div>
+    </div>
+    <div class="search__scrim" data-close></div>
+  </div>
+
+  <!-- Cart drawer -->
+  <div class="drawer drawer--right" data-drawer="cart" aria-hidden="true">
+    <div class="drawer__panel" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+      <div class="drawer__head">
+        <h2 class="drawer__title" id="cart-title">Votre panier <span data-cart-count-label></span></h2>
+        <button class="icon-btn" type="button" aria-label="Fermer le panier" data-close>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+        </button>
+      </div>
+      <div class="ship-meter" data-ship-meter>
+        <p data-ship-text></p>
+        <div class="ship-meter__bar"><span data-ship-bar></span></div>
+      </div>
+      <div class="cart__items" data-cart-items></div>
+      <div class="cart__foot" data-cart-foot>
+        <div class="cart__row"><span>Sous-total</span><strong data-cart-subtotal></strong></div>
+        <p class="cart__note">Frais de livraison calculés à l'étape suivante. Paiement à la livraison.</p>
+        <button class="btn btn--teal btn--block" type="button" data-checkout>Passer commande</button>
+        <button class="link-underline cart__continue" type="button" data-close>Continuer mes achats</button>
+      </div>
+    </div>
+    <div class="drawer__scrim" data-close></div>
+  </div>
+
+  <!-- Checkout (cash on delivery) -->
+  <div class="checkout" data-checkout-view aria-hidden="true">
+    <div class="checkout__panel" role="dialog" aria-modal="true" aria-labelledby="co-title" data-co-panel>
+      <header class="checkout__head">
+        <button class="checkout__back" type="button" data-co-back>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5m5-5-5 5 5 5" /></svg>
+          <span>Panier</span>
+        </button>
+        <span class="wordmark wordmark--sm">RAWANE</span>
+        <button class="icon-btn" type="button" aria-label="Fermer la commande" data-close>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+        </button>
+      </header>
+
+      <div class="checkout__view" data-co-form-view>
+        <form class="checkout__form" data-co-form novalidate>
+          <div class="checkout__intro">
+            <p class="eyebrow">Finaliser ma commande</p>
+            <h2 class="checkout__title" id="co-title">Vos informations de <em>livraison</em></h2>
+            <p class="checkout__lead">Aucun paiement en ligne : vous réglez votre commande à sa réception.</p>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="co-lastName">Nom <span aria-hidden="true">*</span></label>
+              <input id="co-lastName" name="lastName" type="text" autocomplete="family-name" maxlength="60" required aria-describedby="co-lastName-err" />
+              <p class="field__error" id="co-lastName-err" data-error-for="lastName"></p>
+            </div>
+            <div class="field">
+              <label for="co-firstName">Prénom <span aria-hidden="true">*</span></label>
+              <input id="co-firstName" name="firstName" type="text" autocomplete="given-name" maxlength="60" required aria-describedby="co-firstName-err" />
+              <p class="field__error" id="co-firstName-err" data-error-for="firstName"></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="co-phone">Téléphone <span aria-hidden="true">*</span></label>
+            <input id="co-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="24" placeholder="06 12 34 56 78" required aria-describedby="co-phone-hint co-phone-err" />
+            <p class="field__hint" id="co-phone-hint">Numéro marocain. Notre équipe vous appellera pour confirmer la commande.</p>
+            <p class="field__error" id="co-phone-err" data-error-for="phone"></p>
+          </div>
+
+          <div class="field">
+            <label for="co-address">Adresse complète de livraison <span aria-hidden="true">*</span></label>
+            <textarea id="co-address" name="address" rows="3" autocomplete="street-address" maxlength="240" placeholder="N°, rue, quartier, immeuble, étage…" required aria-describedby="co-address-err"></textarea>
+            <p class="field__error" id="co-address-err" data-error-for="address"></p>
+          </div>
+
+          <div class="field">
+            <label for="co-city">Ville <span aria-hidden="true">*</span></label>
+            <input id="co-city" name="city" type="text" autocomplete="address-level2" maxlength="60" list="co-cities" required aria-describedby="co-city-err" />
+            <datalist id="co-cities">
+              <option value="Casablanca"></option><option value="Rabat"></option><option value="Marrakech"></option>
+              <option value="Fès"></option><option value="Tanger"></option><option value="Agadir"></option>
+              <option value="Meknès"></option><option value="Oujda"></option><option value="Kénitra"></option>
+              <option value="Tétouan"></option><option value="Salé"></option><option value="Mohammédia"></option>
+              <option value="El Jadida"></option><option value="Essaouira"></option><option value="Laâyoune"></option>
+            </datalist>
+            <p class="field__error" id="co-city-err" data-error-for="city"></p>
+          </div>
+
+          <fieldset class="co-pay">
+            <legend>Mode de paiement</legend>
+            <div class="co-pay__option">
+              <svg class="co-pay__icon" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="8" width="26" height="16" rx="1.5" /><circle cx="16" cy="16" r="3.5" /><path d="M7 12v0M25 20v0" /></svg>
+              <div>
+                <p class="co-pay__name">Paiement à la livraison</p>
+                <p class="co-pay__desc">Réglez en espèces à la réception de votre colis. Aucune information bancaire n'est demandée.</p>
+              </div>
+              <span class="co-pay__check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 12.5 4 4 8-9" /></svg></span>
+            </div>
+          </fieldset>
+
+          <div class="co-alert" role="alert" data-co-alert hidden></div>
+
+          <button class="btn btn--teal btn--block co-submit" type="submit" data-co-submit>
+            <span class="co-submit__spinner" aria-hidden="true"></span>
+            <span data-co-submit-label>Confirmer ma commande</span>
+          </button>
+          <p class="checkout__legal">En confirmant, vous acceptez d'être contacté(e) par téléphone pour valider votre commande et organiser la livraison.</p>
+        </form>
+
+        <aside class="checkout__summary" aria-labelledby="co-summary-title">
+          <div class="checkout__summary-inner">
+            <h3 class="co-summary__title" id="co-summary-title">Récapitulatif <span data-co-count></span></h3>
+            <ul class="co-lines" data-co-lines></ul>
+            <dl class="co-totals">
+              <div><dt>Sous-total</dt><dd data-co-subtotal></dd></div>
+              <div><dt>Livraison</dt><dd data-co-shipping></dd></div>
+              <div class="co-totals__pay"><dt>Paiement</dt><dd>Paiement à la livraison</dd></div>
+              <div class="co-totals__total"><dt>Total à payer</dt><dd data-co-total></dd></div>
+            </dl>
+            <p class="co-summary__note" data-co-ship-note></p>
+          </div>
+        </aside>
+      </div>
+
+      <div class="checkout__done" data-co-done hidden>
+        <div class="co-success" aria-hidden="true">
+          <svg viewBox="0 0 96 96"><circle cx="48" cy="48" r="44" /><path d="m31 49 11 11 23-25" /></svg>
+        </div>
+        <p class="co-done__number">Commande N° <strong data-co-number></strong></p>
+        <h2 class="checkout__title" tabindex="-1" data-co-done-title>Merci pour votre commande !</h2>
+        <p class="co-done__text">Nous avons bien reçu votre commande. Notre équipe vous contactera prochainement par téléphone pour confirmer les détails et organiser la livraison.</p>
+        <p class="co-done__sign">À très bientôt chez RAWANE.</p>
+        <p class="co-done__total">Montant à régler à la livraison : <strong data-co-done-total></strong></p>
+        <a class="btn btn--teal" href="#/boutique" data-close>Continuer mes achats
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-5-5 5 5-5 5" /></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product quick view -->
+  <div class="modal" data-modal aria-hidden="true">
+    <div class="modal__scrim" data-close></div>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="pv-title" data-modal-panel></div>
+  </div>
+
+  <div class="toast" data-toast role="status" aria-live="polite"></div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
