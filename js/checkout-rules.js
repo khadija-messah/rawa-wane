@@ -1,5 +1,4 @@
-// Checkout rules shared by the browser (instant feedback) and the server (source of truth).
-// No DOM or Node APIs here so both sides can import it.
+// Checkout rules: customer form validation and shipping.
 
 export const FIELDS = ['lastName', 'firstName', 'phone', 'address', 'city'];
 
@@ -49,42 +48,7 @@ export function validateCustomer(input = {}) {
   return { values, errors, ok: Object.keys(errors).length === 0 };
 }
 
-export const MAX_QTY = 10;
-
 /** Shipping is free from the threshold upwards, otherwise the flat fee. */
 export function shippingFor(subtotal, shop) {
   return subtotal === 0 || subtotal >= shop.freeShippingThreshold ? 0 : shop.shippingFee;
-}
-
-export class OrderError extends Error {}
-
-/**
- * Prices cart items against the catalogue. Never trusts prices sent by the client.
- * items: [{ productId, selection: { [variantName]: optionLabel }, qty }]
- */
-export function priceItems(items, productsById) {
-  if (!Array.isArray(items) || items.length === 0) throw new OrderError('Votre panier est vide.');
-  if (items.length > 50) throw new OrderError('Votre panier contient trop d’articles.');
-
-  const lines = items.map((item) => {
-    const product = productsById.get(item?.productId);
-    if (!product) throw new OrderError('Un article de votre panier n’est plus disponible. Merci de le retirer puis de réessayer.');
-
-    const qty = Number(item.qty);
-    if (!Number.isInteger(qty) || qty < 1 || qty > MAX_QTY) throw new OrderError(`Quantité invalide pour ${product.name}.`);
-
-    const selection = item.selection && typeof item.selection === 'object' ? item.selection : {};
-    let unit = product.price;
-    const options = {};
-    for (const group of product.variants) {
-      const opt = group.options.find((o) => o.label === selection[group.name]);
-      if (!opt) throw new OrderError(`Merci de choisir une option « ${group.name} » pour ${product.name}.`);
-      if (opt.soldOut) throw new OrderError(`${product.name} (${group.name} ${opt.label}) est épuisé. Merci de le retirer du panier.`);
-      unit += opt.priceDelta || 0;
-      options[group.name] = opt.label;
-    }
-    return { productId: product.id, name: product.name, options, unitPrice: unit, qty, lineTotal: unit * qty };
-  });
-
-  return { lines, subtotal: lines.reduce((sum, l) => sum + l.lineTotal, 0) };
 }

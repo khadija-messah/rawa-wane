@@ -346,7 +346,7 @@
           <div class="checkout__intro">
             <p class="eyebrow">Finaliser ma commande</p>
             <h2 class="checkout__title" id="co-title">Vos informations de <em>livraison</em></h2>
-            <p class="checkout__lead">Aucun paiement en ligne : vous réglez votre commande à sa réception.</p>
+            <p class="checkout__lead">Aucun paiement en ligne : le règlement se fait à la livraison.</p>
           </div>
 
           <div class="field-row">
@@ -365,7 +365,7 @@
           <div class="field">
             <label for="co-phone">Téléphone <span aria-hidden="true">*</span></label>
             <input id="co-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="24" placeholder="06 12 34 56 78" required aria-describedby="co-phone-hint co-phone-err" />
-            <p class="field__hint" id="co-phone-hint">Numéro marocain. Notre équipe vous appellera pour confirmer la commande.</p>
+            <p class="field__hint" id="co-phone-hint">Numéro marocain, par exemple 06 12 34 56 78.</p>
             <p class="field__error" id="co-phone-err" data-error-for="phone"></p>
           </div>
 
@@ -406,7 +406,7 @@
             <span class="co-submit__spinner" aria-hidden="true"></span>
             <span data-co-submit-label>Confirmer ma commande</span>
           </button>
-          <p class="checkout__legal">En confirmant, vous acceptez d'être contacté(e) par téléphone pour valider votre commande et organiser la livraison.</p>
+          <p class="checkout__legal">Site de démonstration : aucune commande réelle n'est passée, et vos informations ne sont ni envoyées ni enregistrées.</p>
         </form>
 
         <aside class="checkout__summary" aria-labelledby="co-summary-title">
@@ -428,11 +428,23 @@
         <div class="co-success" aria-hidden="true">
           <svg viewBox="0 0 96 96"><circle cx="48" cy="48" r="44" /><path d="m31 49 11 11 23-25" /></svg>
         </div>
-        <p class="co-done__number">Commande N° <strong data-co-number></strong></p>
+        <p class="co-done__number">Référence de démonstration <strong data-co-number></strong></p>
         <h2 class="checkout__title" tabindex="-1" data-co-done-title>Merci pour votre commande !</h2>
-        <p class="co-done__text">Nous avons bien reçu votre commande. Notre équipe vous contactera prochainement par téléphone pour confirmer les détails et organiser la livraison.</p>
-        <p class="co-done__sign">À très bientôt chez RAWANE.</p>
-        <p class="co-done__total">Montant à régler à la livraison : <strong data-co-done-total></strong></p>
+        <div class="co-done__text">
+          <p>Votre commande a bien été reçue avec succès.</p>
+          <p>Notre équipe vous contactera dans les plus brefs délais par téléphone pour confirmer les détails de votre commande et organiser la livraison.</p>
+        </div>
+        <p class="co-done__sign">Merci d'avoir choisi RAWANE.<br />À très bientôt !</p>
+        <section class="co-done__summary" aria-labelledby="co-done-summary-title">
+          <h3 class="co-summary__title" id="co-done-summary-title">Récapitulatif</h3>
+          <ul class="co-lines" data-co-done-lines></ul>
+          <dl class="co-totals">
+            <div><dt>Sous-total</dt><dd data-co-done-subtotal></dd></div>
+            <div><dt>Livraison</dt><dd data-co-done-shipping></dd></div>
+            <div class="co-totals__pay"><dt>Paiement</dt><dd>Paiement à la livraison</dd></div>
+            <div class="co-totals__total"><dt>Total</dt><dd data-co-done-total></dd></div>
+          </dl>
+        </section>
         <a class="btn btn--teal" href="#/boutique" data-close>Continuer mes achats
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-5-5 5 5-5 5" /></svg>
         </a>

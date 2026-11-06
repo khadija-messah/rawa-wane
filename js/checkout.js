@@ -1,5 +1,5 @@
-// Checkout: cash-on-delivery order form, summary and confirmation.
-// The order only counts as placed once the server answers with an order number.
+// Checkout simulation for this portfolio demo: nothing leaves the browser.
+// No order is transmitted and customer details are never stored.
 
 import { shop } from './data/products.js';
 import { money, checkoutLine } from './templates.js';
@@ -8,16 +8,23 @@ import { FIELDS, validateCustomer, shippingFor } from './checkout-rules.js';
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
-const TIMEOUT_MS = 15_000;
-const MSG = {
-  network: 'Impossible de joindre notre serveur. Vérifiez votre connexion puis réessayez — votre panier et vos informations sont conservés.',
-  timeout: 'Le serveur met trop de temps à répondre. Veuillez réessayer — votre panier et vos informations sont conservés.',
-  generic: 'Votre commande n’a pas pu être enregistrée. Veuillez réessayer — votre panier et vos informations sont conservés.',
-  fields: 'Merci de corriger les champs indiqués en rouge.',
-};
+const SIMULATED_DELAY_MS = 900;
+const SEQ_KEY = 'rawane:demo-order-seq';
+const MSG_FIELDS = 'Merci de corriger les champs indiqués en rouge.';
 
-const newRequestId = () =>
-  crypto.randomUUID?.() ?? [...crypto.getRandomValues(new Uint8Array(16))].map((b) => b.toString(16).padStart(2, '0')).join('');
+// Demo reference such as RAW-2026-001. Only the counter is kept, in this browser.
+let memorySeq = 0;
+function nextReference() {
+  let seq = memorySeq + 1;
+  try {
+    seq = Math.max(seq, (Number(localStorage.getItem(SEQ_KEY)) || 0) + 1);
+    localStorage.setItem(SEQ_KEY, String(seq));
+  } catch {
+    /* storage unavailable (private mode) — the counter stays in memory */
+  }
+  memorySeq = seq;
+  return `RAW-${new Date().getFullYear()}-${String(seq).padStart(3, '0')}`;
+}
 
 export function initCheckout({ store, openOverlay, cart }) {
   const root = $('[data-checkout-view]');
@@ -29,8 +36,6 @@ export function initCheckout({ store, openOverlay, cart }) {
   const submitBtn = $('[data-co-submit]', root);
   const backBtn = $('[data-co-back]', root);
 
-  // One id per checkout attempt: a retry after a lost response cannot create a second order.
-  let requestId = newRequestId();
   let submitting = false;
   let attempted = false;
 
@@ -90,25 +95,8 @@ export function initCheckout({ store, openOverlay, cart }) {
     submitBtn.disabled = on;
     submitBtn.classList.toggle('is-busy', on);
     submitBtn.setAttribute('aria-busy', String(on));
-    $('[data-co-submit-label]', submitBtn).textContent = on ? 'Enregistrement en cours…' : 'Confirmer ma commande';
+    $('[data-co-submit-label]', submitBtn).textContent = on ? 'Confirmation en cours…' : 'Confirmer ma commande';
     $$('input, textarea, [data-co-back], [data-close]', root).forEach((el) => { el.disabled = on; });
-  }
-
-  async function postOrder(payload) {
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
-    try {
-      const res = await fetch('/api/orders', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-        signal: controller.signal,
-      });
-      const data = await res.json().catch(() => ({}));
-      return { res, data };
-    } finally {
-      clearTimeout(timer);
-    }
   }
 
   form.addEventListener('submit', async (e) => {
@@ -119,7 +107,7 @@ export function initCheckout({ store, openOverlay, cart }) {
     const { errors, ok } = validateCustomer(readForm());
     showErrors(errors);
     if (!ok) {
-      showAlert(MSG.fields);
+      showAlert(MSG_FIELDS);
       form.elements[FIELDS.find((name) => errors[name])].focus();
       return;
     }
@@ -127,38 +115,27 @@ export function initCheckout({ store, openOverlay, cart }) {
 
     showAlert('');
     setBusy(true);
-    try {
-      const { res, data } = await postOrder({
-        requestId,
-        customer: readForm(),
-        items: store.lines.map((l) => ({ productId: l.productId, selection: l.selection, qty: l.qty })),
-      });
-      if (res.ok && data.orderNumber) return succeed(data);
-      if (res.status === 422 && data.fields) {
-        showErrors(data.fields);
-        showAlert(MSG.fields);
-      } else showAlert(data.error || MSG.generic);
-    } catch (err) {
-      showAlert(err.name === 'AbortError' ? MSG.timeout : MSG.network);
-    } finally {
-      if (submitting) setBusy(false);
-    }
+    await new Promise((resolve) => setTimeout(resolve, SIMULATED_DELAY_MS));
+    confirmDemoOrder();
   });
 
-  function succeed(order) {
+  function confirmDemoOrder() {
+    const subtotal = store.subtotal;
+    const shipping = shippingFor(subtotal, shop);
     setBusy(false);
-    $('[data-co-number]', root).textContent = order.orderNumber;
-    $('[data-co-done-total]', root).textContent = money(order.total);
+    $('[data-co-number]', root).textContent = nextReference();
+    $('[data-co-done-lines]', root).innerHTML = store.lines.map(checkoutLine).join('');
+    $('[data-co-done-subtotal]', root).textContent = money(subtotal);
+    $('[data-co-done-shipping]', root).textContent = shipping ? money(shipping) : 'Offerte';
+    $('[data-co-done-total]', root).textContent = money(subtotal + shipping);
     formView.hidden = true;
     doneView.hidden = false;
     backBtn.hidden = true; // the cart is empty now
     panel.scrollTop = 0;
-    // Only now, with the order saved server-side, is the cart emptied.
     store.clear();
     form.reset();
     showErrors({});
     attempted = false;
-    requestId = newRequestId();
     $('[data-co-done-title]', root).focus({ preventScroll: true });
   }
 
@@ -177,7 +154,6 @@ export function initCheckout({ store, openOverlay, cart }) {
 
   store.subscribe((change) => {
     if (change.type === 'wish') return;
-    if (change.type !== 'clear') requestId = newRequestId(); // a different cart is a different order
     if (!formView.hidden) renderSummary();
   });
 
